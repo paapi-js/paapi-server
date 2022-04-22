@@ -1,0 +1,4 @@
+server:
+  port: 1616
+id:
+  mode: uid
