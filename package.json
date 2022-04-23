@@ -2,7 +2,6 @@
   "name": "@paapi/server",
   "version": "1.0.0",
   "description": "Paapi server",
-  "type": "module",
   "engines": {
     "node": ">= 16.13 <17"
   },
@@ -22,10 +21,11 @@
     "dev": "ts-node-dev --no-notify src/main.ts",
     "start": "node build/src/main.js",
     "clean": "rimraf coverage build tmp",
-    "prebuild": "npm run lint",
+    "prebuild": "pnpm run lint",
     "build": "tsc -p tsconfig.json",
     "build:watch": "tsc -w -p tsconfig.json",
-    "build:release": "npm run clean && tsc -p tsconfig.release.json",
+    "build:release": "pnpm run clean && tsc -p tsconfig.release.json",
+    "start:docker": "pnpm run build && docker-compose up -d",
     "lint": "eslint . --ext .ts"
   },
   "author": "leoboyerbx",
