@@ -4,7 +4,7 @@ import generateId from './generateId';
 export function handleSocket(socket: Socket, io: Server) {
   let roomId = null
   socket.on('paapi:join', async (id: string) => {
-    if (id === null) {
+    if (id === null || id === '') {
       id = await generateId()
     }
     roomId = id
