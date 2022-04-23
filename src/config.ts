@@ -11,5 +11,5 @@ const defaultConfig = {
   }
 }
 const config = Object.assign(defaultConfig, userConfig)
-console.log(config)
+console.log("Server config is: \n", config)
 export default config

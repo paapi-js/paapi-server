@@ -1,8 +1,15 @@
 import {Server} from "socket.io";
 import {handleSocket} from './socketHandler';
 import config from './config';
+import * as express from "express";
+import {createServer} from 'http';
 
-const io = new Server(config.server.port, {
+const app = express()
+app.use(express.static('public'))
+
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
   serveClient: false,
   cors: {
     origin: "*",
@@ -10,4 +17,6 @@ const io = new Server(config.server.port, {
   }
 });
 io.on("connection", s => handleSocket(s, io));
-console.log('Starting server on port ' + config.server.port)
+httpServer.listen(config.port, () => {
+  console.log('\nServer listening on port ' + config.port)
+})
